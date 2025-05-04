@@ -1,0 +1,41 @@
+﻿@model JobListing 
+@{
+    ViewData["Title"] = "Edit";
+}
+<form method="post" action="/JobListing/SaveEdit/@Model">
+    <div class="mb-3">
+        <label for="Title" class="form-label">Title</label>
+        <input type="text" value="@Model?.Title" name="Title" class="form-control" id="Title">
+    </div>
+    <div class="mb-3">
+        <label for="Discription" class="form-label">Discription</label>
+        <input type="text" value="@Model?.Discription" name="Discription" class="form-control" id="Discription">
+    </div>
+    <div class="mb-3">
+        <label for="Requirement" class="form-label">Requirement</label>
+        <input type="text" value="@Model?.Requirement" name="Requirement" class="form-control" id="Requirement">
+    </div>
+    <div class="mb-3">
+        <label for="Locations" class="form-label">Locations</label>
+        <input type="text" value="@Model?.Locations" name="Locations" class="form-control" id="Locations">
+    </div>
+    <div class="mb-3">
+        <label for="Locations" class="form-label">Locations</label>
+        <input type="text" value="@Model?.JobType" name="Locations" class="form-control" id="Locations">
+    </div>
+    <div class="mb-3">
+        <label for="SalaryRange" class="form-label">SalaryRange</label>
+        <input type="text" value="@Model?.SalaryRange" name="SalaryRange" class="form-control" id="SalaryRange">
+    </div>
+    <div class="mb-3">
+        <label for="SalaryRange" class="form-label">Status</label>
+        <input type="text" value="@Model?.Status" name="SalaryRange" class="form-control" id="SalaryRange">
+    </div>
+    <div class="mb-3">
+        <label for="ExpiryDate" class="form-label">ExpiryDate</label>
+        <input type="date" value="@Model?.ExpiryDate.ToString("yyyy-MM-dd")" name="ExpiryDate" class="form-control"
+            id="ExpiryDate">
+    </div>
+    <button type="submit" value="Edit" class="btn btn-primary">Submit</button>
+
+</form>

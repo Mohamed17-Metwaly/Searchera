@@ -1,0 +1,44 @@
+﻿@model List<JobListing>
+@{
+    ViewData["Title"] = "Index";
+}
+<a href="/JobListing/Add" class="btn btn-primary">Add job</a>
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <form asp-controller="JobListing" asp-action="Search" method="post" class="d-flex mb-3">
+            <input type="search" name="Query" class="form-control me-2" placeholder="Search for Customer..." />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Title</th>
+            <th scope="col">Discription</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <th scope="row">@item.Title</th>
+                <th scope="row">@item.Discription</th>
+                <th scope="row">
+                    <a href="/JobListing/Details/@item.Id" class="btn btn-outline-primary">Details</a>
+                </th>
+                <th scope="row">
+                    <a href="/JobListing/Edit/@item.Id" class="btn btn-outline-primary">Edit</a>
+                </th>
+                <th scope="row">
+                    <a href="/JobListing/Delete/@item.Id" class="btn btn-outline-danger">Delete</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,35 @@
+﻿@model List<Application>
+@{
+    ViewData["Title"] = "Index";
+}
+<a href="/Application/Add" class="btn btn-primary">Add Application</a>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">ResumeLink</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <th scope="row">@item.ResumeLink</th>
+                <th scope="row">
+                    <a href="/Application/Details/@item.Id" class="btn btn-outline-primary">Details</a>
+                </th>
+                <th scope="row">
+                    <a href="/Application/Edit/@item.Id" class="btn btn-outline-primary">Edit</a>
+                </th>
+                <th scope="row">
+                    <a href="/Application/Delete/@item.Id" class="btn btn-outline-danger">Delete</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>

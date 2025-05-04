@@ -1,0 +1,27 @@
+﻿@model User
+@{
+    ViewData["Title"] = "Edit";
+}
+<form method="post" action="/User/SaveEdit/@Model">
+    <div class="mb-3">
+        <label for="Name" class="form-label">Name</label>
+        <input type="text" value="@Model?.Name" name="Name" class="form-control" id="Name">
+    </div>
+    <div class="mb-3">
+        <label for="Eamil" class="form-label">Email</label>
+        <input type="email" value="@Model?.Email" name="Email" class="form-control" id="Email">
+    </div>
+    <div class="mb-3">
+        <label for="Password" class="form-label">Password</label>
+        <input type="password" value="@Model?.Password" name="Password" class="form-control" id="Password">
+    </div>
+    <div class="mb-3">
+        <label for="Role" class="form-label">Role</label>
+        <input type="text" value="@Model?.Role" name="Role" class="form-control" id="Role">
+    </div>
+    <div class="mb-3">
+        <label for="ProfileImage" class="form-label">ProfileImage</label>
+        <input type="text" value="@Model?.ProfileImage" name="ProfileImage" class="form-control" id="ProfileImage">
+    </div>
+    <button type="submit" value="Edit" class="btn btn-primary">Submit</button>
+</form>

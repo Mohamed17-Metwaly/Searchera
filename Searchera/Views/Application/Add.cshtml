@@ -1,0 +1,42 @@
+﻿@model Application 
+@{
+    ViewData["Title"] = "Add";
+}
+@{
+    SelectList UserId = new SelectList(ViewBag.UserId, "Id", "Name");
+    SelectList JobID = new SelectList(ViewBag.JobID, "Id", "Title");
+}
+
+<form asp-action="SaveAdd" asp-controller="Application">
+    <div class="mb-3">
+        <label asp-for="ResumeLink" class="form-label">Enter Resume Link</label>
+        <input class="form-control" asp-for="ResumeLink">
+        <span asp-validation-for="ResumeLink" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="CoverLetter" class="form-label">Enter Cover Letter</label>
+        <input class="form-control" asp-for="CoverLetter">
+        <span asp-validation-for="CoverLetter" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <select class="form-select" asp-for="UserId" asp-items="UserId">
+            <option value="0">--Select The User--</option>
+        </select>
+        <span asp-validation-for="UserId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <select class="form-select" asp-for="JobID" asp-items="JobID">
+            <option value="0">--Select The Job Title--</option>
+        </select>
+        <span asp-validation-for="JobID" class="text-danger"></span>
+    </div>
+    <button type="submit" value="Create" class="btn btn-primary">Submit</button>
+</form>
+<a asp-action="Index" asp-controller="Application"><button class="btn btn-danger">Back</button></a>
+@section Scripts
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

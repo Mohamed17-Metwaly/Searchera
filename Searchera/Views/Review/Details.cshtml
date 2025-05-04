@@ -1,0 +1,24 @@
+﻿@model Review 
+@{
+    ViewData["Title"] = "Details";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Review Rating</th>
+            <th scope="col">Review Text</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+            <th scope="row">@Model.Id</th>
+                <th scope="row">@Model.Rating</th>
+                <th scope="row">@Model.Reviewtext</th>
+            </tr>
+    </tbody>
+</table>
+<a href="/Review/Index" class="btn btn-primary">Back</a>

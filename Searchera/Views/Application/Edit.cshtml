@@ -1,0 +1,17 @@
+﻿@model Application
+@{
+    ViewData["Title"] = "Edit";
+}
+<form method="post" action="/Application/SaveEdit/@Model">
+    <div class="mb-3">
+        <label for="ResumeLink" class="form-label">ResumeLink</label>
+        <input type="url" value="@Model?.ResumeLink" name="ResumeLink" class="form-control" id="ResumeLink">
+    </div>
+    <div class="mb-3">
+        <label for="CoverLetter" class="form-label">CoverLetter</label>
+        <input type="text" value="@Model?.CoverLetter" name="CoverLetter" class="form-control" id="CoverLetter">
+    </div>
+    <button type="submit" value="Edit" class="btn btn-primary">Submit</button>
+</form>
+<a href="/Application/Index" class="btn btn-primary">Back</a>
+

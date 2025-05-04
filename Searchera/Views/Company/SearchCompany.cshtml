@@ -1,0 +1,41 @@
+﻿@model List<Company>
+<nav class="navbar bg-body-tertiary">
+    <div class="container-fluid">
+        <form asp-controller="Company" asp-action="Search" method="post" class="d-flex mb-3">
+            <input type="search" name="Query" class="form-control me-2" placeholder="Search for Customer..." />
+            <button type="submit" class="btn btn-primary">Search</button>
+        </form>
+    </div>
+</nav>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Wepsite</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <th scope="row">@item.Id</th>
+                <th scope="row">@item.Name</th>
+                <th scope="row">@item.Wepsite</th>
+                <th scope="row">
+                    <a href="/Company/Details/@item.Id" class="btn btn-outline-primary">Company Details</a>
+                </th>
+                <th scope="row">
+                    <a href="/Company/Edit/@item.Id" class="btn btn-outline-primary">Company Edit</a>
+                </th>
+                <th scope="row">
+                    <a href="/Company/Delete/@item.Id" class="btn btn-outline-danger">Delete Company</a>
+                </th>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Index" asp-controller="Company"><button class="btn btn-danger">Back</button></a>

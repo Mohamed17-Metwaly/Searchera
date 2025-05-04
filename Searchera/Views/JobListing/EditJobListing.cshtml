@@ -1,0 +1,76 @@
+﻿@model JobListing 
+@{
+    SelectList UserId = new SelectList(ViewBag.UserId, "Id", "Name");
+    SelectList CompanyID = new SelectList(ViewBag.CompanyID, "Id", "Name");
+}
+
+<form asp-action="SaveEdit" asp-controller="JobListing" asp-route-id="@Model.Id">
+    <div class="mb-3">
+        <label asp-for="Title" class="form-label">Enter The Title</label>
+        <input class="form-control" asp-for="Title">
+        <span asp-validation-for="Title" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Requirement" class="form-label">Enter The Requierments</label>
+        <input class="form-control" asp-for="Requirement">
+        <span asp-validation-for="Requirement" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Locations" class="form-label">Enter The Location</label>
+        <input class="form-control" asp-for="Locations">
+        <span asp-validation-for="Locations" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Discription" class="form-label">Enter The Discription</label>
+        <input class="form-control" asp-for="Discription">
+        <span asp-validation-for="Discription" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="SalaryRange" class="form-label">Enter The Salary Range</label>
+        <input class="form-control" asp-for="SalaryRange">
+        <span asp-validation-for="SalaryRange" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="ExpiryDate" class="form-label">Enter The Expiry Date</label>
+        <input class="form-control" asp-for="ExpiryDate">
+        <span asp-validation-for="ExpiryDate" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <select class="form-select" asp-for="UserId" asp-items="UserId">
+            <option value="0">--Select The Poster--</option>
+        </select>
+        <span asp-validation-for="UserId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <select class="form-select" asp-for="CompanyID" asp-items="CompanyID">
+            <option value="0">--Select The Company Name--</option>
+        </select>
+        <span asp-validation-for="CompanyID" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <select class="form-select" asp-for="StatusId">
+            <option value="1">Pending</option>
+            <option value="2">Accepted</option>
+            <option value="3">Rejected</option>
+        </select>
+        <span asp-validation-for="StatusId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <select class="form-select" asp-for="JobTypeId">
+            <option value="1">Full-Time</option>
+            <option value="2">Part-Time</option>
+            <option value="3">Internship</option>
+            <option value="4">Contract</option>
+        </select>
+        <span asp-validation-for="JobTypeId" class="text-danger"></span>
+    </div>
+    <button type="submit" value="Create" class="btn btn-primary">Submit</button>
+</form>
+<a asp-action="Index" asp-controller="JobListing"><button class="btn btn-danger">Back</button></a>
+@section Scripts
+{
+        <script src="~/lib/jquery/dist/jquery.min.js"></script>
+        <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+        <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

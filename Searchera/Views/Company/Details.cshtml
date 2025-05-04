@@ -1,0 +1,39 @@
+﻿@model Company
+@{
+    ViewData["Title"] = "Details";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">Wepsite</th>
+            <th scope="col">Email</th>
+            <th scope="col">Password</th>
+            <th scope="col">Discription</th>
+            <th scope="col">Industry</th>
+            <th scope="col">Location</th>
+            <th scope="col">Logo</th>
+        </tr>
+    </thead>
+    <tbody>
+            <tr>
+                <th scope="row">@Model.Id</th>
+                <th scope="row">@Model.Name</th>
+                <th scope="row">@Model.Wepsite</th>
+                <th scope="row">@Model.Email</th>
+                 <th scope="row">@Model.Password</th>
+                 <th scope="row">@Model.Discription</th>
+                 <th scope="row">@Model.Industry</th>
+                 <th scope="row">@Model.Locations</th>
+            <td>
+                @if (Model.Logo != null)
+                {
+                    <img src="~/Logo/@Model.Logo" class="img-thumbnail" style="width:150px; height:150px;" />
+                }
+            </td>
+            </tr>
+    </tbody>
+</table>
+<a href="/Company/Index" class="btn btn-primary">Back</a>

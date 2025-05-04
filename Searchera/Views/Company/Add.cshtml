@@ -1,0 +1,65 @@
+﻿@model Company
+@{
+    ViewData["Title"] = "Add";
+}
+@{
+    SelectList UserId = new SelectList(ViewBag.UserId, "Id", "Name");
+}
+
+<form asp-action="SaveAdd" asp-controller="Company" enctype="multipart/form-data">
+    <div class="mb-3">
+        <label asp-for="Name" class="form-label">Enter Name</label>
+        <input class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Discription" class="form-label">Enter The Discription</label>
+        <input class="form-control" asp-for="Discription">
+        <span asp-validation-for="Discription" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Locations" class="form-label">Enter The Location</label>
+        <input class="form-control" asp-for="Locations">
+        <span asp-validation-for="Locations" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Wepsite" class="form-label">Enter The Website</label>
+        <input class="form-control" asp-for="Wepsite">
+        <span asp-validation-for="Wepsite" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Industry" class="form-label">Enter The Industry</label>
+        <input class="form-control" asp-for="Industry">
+        <span asp-validation-for="Industry" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <label for="LogoProfile">Upload The Logo</label>
+        <input asp-for="LogoProfile" type="file" class="form-control" />
+        <span asp-validation-for="LogoProfile" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <select class="form-select" asp-for="UserId" asp-items="UserId">
+            <option value="0">--Select The Poster--</option>
+        </select>
+        <span asp-validation-for="UserId" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Email" class="form-label">Enter The Email</label>
+        <input class="form-control" asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Password" class="form-label">Enter The Password</label>
+        <input class="form-control" asp-for="Password">
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <button type="submit" value="Create" class="btn btn-primary">Submit</button>
+</form>
+<a asp-action="Index" asp-controller="Company"><button class="btn btn-danger">Back</button></a>
+@section Scripts
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

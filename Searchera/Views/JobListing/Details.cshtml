@@ -1,0 +1,35 @@
+﻿@model JobListing 
+@{
+    ViewData["Title"] = "Details";
+}
+<div class="container">
+	<h1>Job Listing Details</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Title</th>
+				<th scope="col">Description</th>
+				<th scope="col">Requirement</th>
+				<th scope="col">Location</th>
+				<th scope="col">SalaryRange</th>
+				<th scope="col">ExpiryDate</th>
+				<th scope="col">JobType</th>
+				<th scope="col">Status</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>@Model.Id</td>
+				<td>@Model.Title</td>
+				<td>@Model.Discription</td>
+				<td>@Model.Requirement</td>
+				<td>@Model.Locations</td>
+				<td>@Model.SalaryRange</td>
+				<td>@Model.ExpiryDate</td>
+				<td>@Model.JobType</td>
+				<td>@Model.Status</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/JobListing/Index" class="btn btn-primary">Back to Job Listings</a>

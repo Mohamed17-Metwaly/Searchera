@@ -1,0 +1,36 @@
+﻿@model User 
+@{
+    ViewData["Title"] = "Details";
+}
+
+<div class="container">
+	<h1>User Details</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th scope="col">ID</th>
+				<th scope="col">Name</th>
+				<th scope="col">Email</th>
+				<th scope="col">Password</th>
+				<th scope="col">Role</th>
+				<th scope="col">ProfileImage</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr>
+				<td>@Model.Id</td>
+				<td>@Model.Name</td>
+				<td>@Model.Email</td>
+				<td>@Model.Password</td>
+				<td>@Model.Role</td>
+				<td>
+					@if (Model.ProfileImage != null)
+					{
+						<img src="~/images/@Model.ProfileImage" class="img-thumbnail" style="width:150px; height:150px;" />
+					}
+				</td>
+			</tr>
+		</tbody>
+	</table>
+	<a href="/User/Index" class="btn btn-primary">Back</a>
+</div>
