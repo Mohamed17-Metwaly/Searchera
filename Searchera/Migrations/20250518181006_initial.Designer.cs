@@ -12,8 +12,8 @@ using Searchera.Models;
 namespace Searchera.Migrations
 {
     [DbContext(typeof(JobBoardSystemContext))]
-    [Migration("20250503121905_EditOnTheDateTime")]
-    partial class EditOnTheDateTime
+    [Migration("20250518181006_initial")]
+    partial class initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -121,7 +121,7 @@ namespace Searchera.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyID")
+                    b.Property<int?>("CompanyID")
                         .HasColumnType("int");
 
                     b.Property<DateTime?>("CreatedAt")
@@ -136,7 +136,6 @@ namespace Searchera.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("JobType")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Locations")
@@ -160,7 +159,7 @@ namespace Searchera.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -180,7 +179,7 @@ namespace Searchera.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CompanyID")
+                    b.Property<int?>("CompanyID")
                         .HasColumnType("int");
 
                     b.Property<int>("Rating")
@@ -191,7 +190,7 @@ namespace Searchera.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("nvarchar(100)");
 
-                    b.Property<int>("UserId")
+                    b.Property<int?>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -269,15 +268,11 @@ namespace Searchera.Migrations
                 {
                     b.HasOne("Searchera.Models.Company", "Company")
                         .WithMany("JobListings")
-                        .HasForeignKey("CompanyID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanyID");
 
                     b.HasOne("Searchera.Models.User", "User")
                         .WithMany("JobListings")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Company");
 
@@ -288,15 +283,11 @@ namespace Searchera.Migrations
                 {
                     b.HasOne("Searchera.Models.Company", "Company")
                         .WithMany("Reviews")
-                        .HasForeignKey("CompanyID")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CompanyID");
 
                     b.HasOne("Searchera.Models.User", "User")
                         .WithMany("Reviews")
-                        .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("UserId");
 
                     b.Navigation("Company");
 

@@ -18,12 +18,12 @@ public partial class Application
     public string CoverLetter { get; set; }
     [ForeignKey("Job")]
     [Required(ErrorMessage = "Choose Job Title")]
-    public int JobID { get; set; }
+    public int ? JobID { get; set; }
     [ForeignKey("User")]
     [Required(ErrorMessage = "Choose The User")]
-    public int UserId { get; set; }
+    public int ? UserId { get; set; }
 
     public virtual JobListing? Job { get; set; }
 
-    public virtual User? User { get; set; }
+    public virtual User ? User { get; set; }
 }

@@ -16,6 +16,8 @@ public partial class JobBoardSystemContext : DbContext
     {
     }
 
+
+
     public virtual DbSet<Application> Applications { get; set; }
 
     public virtual DbSet<Company> Companies { get; set; }

@@ -33,16 +33,16 @@ public partial class JobListing
     public string JobType { get; set; }
     [NotMapped]
     [Required(ErrorMessage = "Choose The Status!")]
-    public int JobTypeId { get; set; }
+    public int? JobTypeId { get; set; }
 
     public DateTime? CreatedAt { get; set; }
     [Required(ErrorMessage = "The Expiry Date is Required!")]
     [DataType(DataType.Date)]
     public DateTime ExpiryDate { get; set; }
     [ForeignKey("User")]
-    public int UserId { get; set; }
+    public int? UserId { get; set; }
     [ForeignKey("Company")]
-    public int CompanyID { get; set; }
+    public int? CompanyID { get; set; }
     [Required(ErrorMessage = "The Salary Range Date is Required!")]
     public decimal SalaryRange { get; set; }
 

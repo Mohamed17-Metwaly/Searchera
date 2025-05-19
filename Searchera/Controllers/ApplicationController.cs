@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Searchera.Models;
 
 namespace Searchera.Controllers
@@ -47,8 +48,8 @@ namespace Searchera.Controllers
         }
         public IActionResult Delete(int id)
         {
-            Application application = jobBoardSystemContext
-                .Applications.FirstOrDefault(c => c.Id == id)!;
+            Application application = jobBoardSystemContext.Applications
+                .FirstOrDefault(c => c.Id == id)!;
             if (application != null)
             {
                 jobBoardSystemContext.Applications.Remove(application);

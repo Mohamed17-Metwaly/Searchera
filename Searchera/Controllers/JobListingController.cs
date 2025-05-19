@@ -76,16 +76,21 @@ namespace Searchera.Controllers
         [HttpGet]
         public IActionResult Details(int id)
         {
-            JobListing jobListing = jobBoardSystemContext
-                .JobListings.FirstOrDefault(c => c.Id == id)!;
+            JobListing jobListing = jobBoardSystemContext.JobListings
+                .FirstOrDefault(c => c.Id == id)!;
             return View("Details", jobListing);
         }
         public IActionResult Delete(int id)
         {
-            var job = jobBoardSystemContext
-                .JobListings.FirstOrDefault(c => c.Id == id);
+            var job = jobBoardSystemContext.JobListings
+                .Include(x => x.User)
+                .Include(x => x.Applications)
+                .FirstOrDefault(c => c.Id == id);
+
             if (job != null)
             {
+                jobBoardSystemContext.Set<Application>().RemoveRange(job.Applications);
+                //jobBoardSystemContext.Set<User>().RemoveRange(job.User);
                 jobBoardSystemContext.JobListings.Remove(job);
                 jobBoardSystemContext.SaveChanges();
                 return RedirectToAction("Index");
@@ -153,6 +158,10 @@ namespace Searchera.Controllers
             }
             ViewData["UserId"] = jobBoardSystemContext.Users.Where(x => x.Role.Contains("Admin") || x.Role.Contains("Employer")).ToList();
             ViewData["CompanyID"] = jobBoardSystemContext.Companies.ToList();
+            jobBoardSystemContext.JobListings.Update(repjob);
+            jobBoardSystemContext.SaveChanges();
+            return RedirectToAction("Index");
+
             return View("EditJobListing", newjob);
 
         }

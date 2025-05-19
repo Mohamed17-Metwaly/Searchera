@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Searchera.Models;
 using Searchera.ViewModels;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
@@ -61,16 +62,31 @@ namespace Searchera.Controllers
             ViewData["UserId"] = jobBoardSystemContext.Users.ToList();
             return View("Add", company);
         }
-        public IActionResult Delete(int id)
+        public async Task<IActionResult> Delete(int id)
         {
-            Company company = jobBoardSystemContext
-                .Companies.FirstOrDefault(c => c.Id == id)!;
+            var company = jobBoardSystemContext.Companies
+                .Include(c => c.JobListings)
+                .ThenInclude(j => j.Applications)
+                .Include(c => c.Reviews)
+                .Include(c => c.User)
+                .FirstOrDefault(c => c.Id == id);
+
             if (company != null)
             {
+                //foreach (var job in company.JobListings)
+                //{
+                //    jobBoardSystemContext.Applications.RemoveRange(job.Applications);
+                //}
+                jobBoardSystemContext.Set<Application>().RemoveRange(company.JobListings.SelectMany(j => j.Applications));
+                jobBoardSystemContext.Set<User>().RemoveRange(company.User);
+                jobBoardSystemContext.JobListings.RemoveRange(company.JobListings);
+                jobBoardSystemContext.Reviews.RemoveRange(company.Reviews);
                 jobBoardSystemContext.Companies.Remove(company);
-                jobBoardSystemContext.SaveChanges();
+
+                 await jobBoardSystemContext.SaveChangesAsync();
+                return RedirectToAction("Index");
             }
-            return RedirectToAction("Index");
+            return NotFound();
         }
         public IActionResult Search(string Query)
         {
@@ -82,7 +98,7 @@ namespace Searchera.Controllers
             Company oldcomp=jobBoardSystemContext.Companies.FirstOrDefault(x => x.Id == id);
             CompanyViewModel model=new CompanyViewModel();
             model.Id = id;
-            model.UserId = oldcomp.UserId;
+            model.UserId = (int)oldcomp.UserId;
             model.Name = oldcomp.Name;
             model.Logo= oldcomp.Logo;
             model.Discription = oldcomp.Discription;
@@ -128,8 +144,12 @@ namespace Searchera.Controllers
                 jobBoardSystemContext.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewData["UserId"] = jobBoardSystemContext.Users.ToList();
-            return View("EditCompany", newcomp);
+            jobBoardSystemContext.Companies.Update(repcomp);
+            jobBoardSystemContext.SaveChanges();
+            return RedirectToAction("Index");
+
+            //ViewData["UserId"] = jobBoardSystemContext.Users.ToList();
+            //return View("EditCompany", newcomp);
         }
     }
 }
