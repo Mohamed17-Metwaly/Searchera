@@ -1,27 +1,49 @@
-﻿@model User
+﻿@model UserViewModel
+
 @{
     ViewData["Title"] = "Edit";
 }
-<form method="post" action="/User/SaveEdit/@Model">
+<form asp-action="SaveEdit" asp-controller="User" asp-route-id="@Model.Id" enctype="multipart/form-data">
     <div class="mb-3">
-        <label for="Name" class="form-label">Name</label>
-        <input type="text" value="@Model?.Name" name="Name" class="form-control" id="Name">
+        <label asp-for="Name" class="form-label">Name</label>
+        <input class="form-control" asp-for="Name">
+        <span asp-validation-for="Name" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label for="Eamil" class="form-label">Email</label>
-        <input type="email" value="@Model?.Email" name="Email" class="form-control" id="Email">
+        <label asp-for="Email" class="form-label">Email</label>
+        <input class="form-control" asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label for="Password" class="form-label">Password</label>
-        <input type="password" value="@Model?.Password" name="Password" class="form-control" id="Password">
+        <label asp-for="Password" class="form-label">Password</label>
+        <input class="form-control" asp-for="Password">
+        <span asp-validation-for="Password" class="text-danger"></span>
+    </div>
+    <input type="hidden" asp-for="ProfileImage" />
+
+    <div class="form-group">
+        <label for="ProfileImageFile">Upload Image</label>
+        <input asp-for="ProfileImageFile" type="file" class="form-control" />
+        <span asp-validation-for="ProfileImageFile" class="text-danger"></span>
     </div>
     <div class="mb-3">
-        <label for="Role" class="form-label">Role</label>
-        <input type="text" value="@Model?.Role" name="Role" class="form-control" id="Role">
+        <select class="form-select" asp-for="RoleID">
+            <option value="0">--Select The Role--</option>
+            <option value="1">Admin</option>
+            <option value="2">Job Seeker</option>
+            <option value="3">Employer</option>
+        </select>
+        <span asp-validation-for="RoleID" class="text-danger"></span>
     </div>
-    <div class="mb-3">
-        <label for="ProfileImage" class="form-label">ProfileImage</label>
-        <input type="text" value="@Model?.ProfileImage" name="ProfileImage" class="form-control" id="ProfileImage">
-    </div>
-    <button type="submit" value="Edit" class="btn btn-primary">Submit</button>
+    <div class="button-container">
+    <button type="submit" value="Create" class="btn btn-primary">Submit</button>
 </form>
+<a asp-action="Index" asp-controller="User"><button class="btn btn-danger">Back</button></a>
+</div>
+@section Scripts
+{
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+}

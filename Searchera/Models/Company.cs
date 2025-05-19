@@ -38,7 +38,7 @@ public partial class Company
     public DateTime CreatedAt { get; set; }
     [ForeignKey("User")]
     [Required(ErrorMessage = "The User is Requierd!")]
-    public int UserId { get; set; }
+    public int? UserId { get; set; }
     [Required(ErrorMessage ="The Email is Requierd!")]
     [EmailAddress(ErrorMessage ="Enter The Correct Email!")]
     public string Email { get; set; }

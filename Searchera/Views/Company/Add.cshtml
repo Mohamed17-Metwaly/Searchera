@@ -53,9 +53,11 @@
         <input class="form-control" asp-for="Password">
         <span asp-validation-for="Password" class="text-danger"></span>
     </div>
+    <div class="button-container">
     <button type="submit" value="Create" class="btn btn-primary">Submit</button>
 </form>
 <a asp-action="Index" asp-controller="Company"><button class="btn btn-danger">Back</button></a>
+</div>
 @section Scripts
 {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

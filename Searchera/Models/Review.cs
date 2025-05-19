@@ -16,9 +16,9 @@ public partial class Review
     [Required(ErrorMessage = "The Review Text is Requierd!")]
     public int Rating { get; set; }
     [ForeignKey("User")]
-    public int UserId { get; set; }
+    public int? UserId { get; set; }
     [ForeignKey("Company")]
-    public int CompanyID { get; set; }
+    public int? CompanyID { get; set; }
 
     public virtual Company? Company { get; set; }
 

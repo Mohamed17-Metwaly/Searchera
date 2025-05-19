@@ -29,9 +29,11 @@
         </select>
         <span asp-validation-for="CompanyID" class="text-danger"></span>
     </div>
+    <div class="button-container">
     <button type="submit" value="Create" class="btn btn-primary">Submit</button>
 </form>
 <a asp-action="Index" asp-controller="Review"><button class="btn btn-danger">Back</button></a>
+</div>
 @section Scripts
 {
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
